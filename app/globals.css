@@ -1199,3 +1199,148 @@ a.tool-card:hover {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* ---------- Admin authentication ---------- */
+
+.admin-login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 30px;
+  background:
+    radial-gradient(circle at 70% 20%, rgba(124, 174, 113, 0.15), transparent 28%),
+    var(--ink-deep);
+}
+
+.admin-login-card {
+  width: min(100%, 440px);
+  padding: 42px;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.22);
+}
+
+.admin-login-brand {
+  font-size: 28px;
+  font-weight: 850;
+  letter-spacing: -0.06em;
+}
+
+.admin-login-brand span {
+  color: var(--green-bright);
+}
+
+.admin-login-label {
+  margin: 8px 0 34px;
+  color: var(--green);
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.18em;
+}
+
+.admin-login-card h1 {
+  margin: 0;
+  color: var(--ink-deep);
+  font-size: 38px;
+  letter-spacing: -0.05em;
+}
+
+.admin-login-intro {
+  margin: 9px 0 28px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.admin-login-error {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border-radius: 9px;
+  background: #fff0ed;
+  color: #9a392d;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.admin-login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.admin-login-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.admin-login-form label span {
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.admin-login-form input {
+  height: 48px;
+  padding: 0 13px;
+  border: 1px solid #ccd9d3;
+  border-radius: 9px;
+  outline: none;
+  color: var(--ink);
+  font: inherit;
+}
+
+.admin-login-form input:focus {
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(40, 108, 82, 0.1);
+}
+
+.admin-login-form button,
+.admin-logout {
+  border: 0;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 750;
+}
+
+.admin-login-form button {
+  min-height: 49px;
+  margin-top: 5px;
+  border-radius: 999px;
+  background: var(--ink-deep);
+  color: white;
+}
+
+.admin-login-form button:hover {
+  background: var(--green);
+}
+
+.admin-login-home {
+  display: inline-block;
+  margin-top: 28px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.admin-sidebar-bottom {
+  margin-top: auto;
+}
+
+.admin-sidebar-bottom .admin-view-site {
+  display: block;
+  margin: 0 0 7px;
+}
+
+.admin-logout {
+  width: 100%;
+  padding: 12px 13px;
+  border-radius: 9px;
+  background: transparent;
+  color: #9db6ad;
+  text-align: left;
+  font-size: 12px;
+}
+
+.admin-logout:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
