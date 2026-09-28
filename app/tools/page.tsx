@@ -33,8 +33,8 @@ const tools = [
     title: "Pond Liner Calculator",
     description:
       "Work out the approximate liner dimensions required for a new pond.",
-    href: "#",
-    status: "Coming soon",
+    href: "/tools/pond-liner-calculator",
+    status: "Available now",
   },
 ];
 
