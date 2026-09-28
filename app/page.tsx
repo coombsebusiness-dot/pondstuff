@@ -1,69 +1,142 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const sections = [
+  {
+    eyebrow: "BUILD & CARE",
+    title: "Pond Guides",
+    copy: "Straightforward help with planning, building and looking after your pond.",
+    href: "/guides",
+    icon: "◒",
+  },
+  {
+    eyebrow: "FIX IT",
+    title: "Pond Problems",
+    copy: "Find the cause of green water, algae, leaks, cloudy water and other common problems.",
+    href: "/problems",
+    icon: "!",
+  },
+  {
+    eyebrow: "CHOOSE WELL",
+    title: "Equipment",
+    copy: "Understand pumps, filters, UV clarifiers, aeration, liners and pond accessories.",
+    href: "/equipment",
+    icon: "⚙",
+  },
+  {
+    eyebrow: "GROW",
+    title: "Pond Plants",
+    copy: "Find plants for wildlife ponds, small ponds, deep water, margins and oxygenation.",
+    href: "/plants",
+    icon: "✦",
+  },
+  {
+    eyebrow: "KEEP",
+    title: "Pond Fish",
+    copy: "Species guides covering pond requirements, care, feeding and compatibility.",
+    href: "/fish",
+    icon: "><>",
+  },
+  {
+    eyebrow: "CALCULATE",
+    title: "Pond Tools",
+    copy: "Work out pond volume, liner size, pump flow and filtration requirements.",
+    href: "/tools",
+    icon: "＋",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <section className="hero">
+        <div className="shell hero-inner">
+          <div className="hero-copy">
+            <p className="eyebrow">THE UK POND OWNER&apos;S RESOURCE</p>
+
+            <h1>
+              Build a better pond.
+              <br />
+              <span>We&apos;ll help with the rest.</span>
+            </h1>
+
+            <p className="hero-intro">
+              From your first hole in the ground to pumps, plants, fish and
+              crystal-clear water, PondStuff gives you practical answers
+              without the jargon.
+            </p>
+
+            <div className="hero-actions">
+              <Link href="/guides" className="button button-primary">
+                Explore pond guides
+              </Link>
+              <Link href="/tools" className="button button-secondary">
+                Use our free tools
+              </Link>
+            </div>
+          </div>
+
+          <div className="pond-graphic" aria-hidden="true">
+            <div className="sun" />
+            <div className="reed reed-one" />
+            <div className="reed reed-two" />
+            <div className="reed reed-three" />
+            <div className="water water-one" />
+            <div className="water water-two" />
+            <div className="water water-three" />
+            <div className="lily lily-one" />
+            <div className="lily lily-two" />
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="explore">
+        <div className="shell">
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">EVERYTHING FOR YOUR POND</p>
+              <h2>What can we help you with?</h2>
+            </div>
+
+            <p>
+              Start with what you need today. Everything on PondStuff is
+              organised around the jobs and questions real pond owners have.
+            </p>
+          </div>
+
+          <div className="card-grid">
+            {sections.map((section) => (
+              <Link
+                href={section.href}
+                className="category-card"
+                key={section.href}
+              >
+                <div className="category-icon">{section.icon}</div>
+                <p className="card-eyebrow">{section.eyebrow}</p>
+                <h3>{section.title}</h3>
+                <p>{section.copy}</p>
+                <span className="card-link">Explore {section.title} →</span>
+              </Link>
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="tool-callout">
+        <div className="shell tool-callout-inner">
+          <div>
+            <p className="eyebrow eyebrow-light">PONDSTUFF TOOLS</p>
+            <h2>Take the guesswork out of your pond.</h2>
+            <p>
+              Our free calculators will help you size the essentials correctly
+              before you spend a penny.
+            </p>
+          </div>
+
+          <Link href="/tools" className="button button-light">
+            Explore pond tools
+          </Link>
+        </div>
+      </section>
+    </>
   );
 }
