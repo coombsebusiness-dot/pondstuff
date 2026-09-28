@@ -727,23 +727,47 @@ export default function ArticleEditor({
             </label>
 
             <div className="article-publish-actions">
-              <button
-                type="submit"
-                name="publish_intent"
-                value="draft"
-                className="admin-secondary-button"
-              >
-                Save draft
-              </button>
+              {initialArticle?.status === "published" ? (
+                <>
+                  <button
+                    type="submit"
+                    name="publish_intent"
+                    value="unpublish"
+                    className="admin-secondary-button"
+                  >
+                    Unpublish
+                  </button>
 
-              <button
-                type="submit"
-                name="publish_intent"
-                value="publish"
-                className="admin-primary-button admin-publish-button"
-              >
-                Publish
-              </button>
+                  <button
+                    type="submit"
+                    name="publish_intent"
+                    value="publish"
+                    className="admin-primary-button admin-publish-button"
+                  >
+                    Save changes
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    type="submit"
+                    name="publish_intent"
+                    value="draft"
+                    className="admin-secondary-button"
+                  >
+                    Save draft
+                  </button>
+
+                  <button
+                    type="submit"
+                    name="publish_intent"
+                    value="publish"
+                    className="admin-primary-button admin-publish-button"
+                  >
+                    Publish
+                  </button>
+                </>
+              )}
             </div>
           </section>
 
