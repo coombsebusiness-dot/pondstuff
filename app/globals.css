@@ -961,3 +961,241 @@ a.tool-card:hover {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================================
+   PONDSTUFF ADMIN
+   ========================================================= */
+
+.admin-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+  background: #f5f7f4;
+}
+
+.admin-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 22px;
+  background: var(--ink-deep);
+  color: white;
+}
+
+.admin-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 10px 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.admin-brand > span {
+  font-size: 22px;
+  font-weight: 850;
+  letter-spacing: -0.06em;
+}
+
+.admin-brand strong {
+  color: #9ac58c;
+}
+
+.admin-brand small {
+  margin-top: 7px;
+  color: #9db6ad;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-top: 25px;
+}
+
+.admin-nav a {
+  padding: 12px 13px;
+  border-radius: 9px;
+  color: #c9d9d3;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.admin-nav a:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.admin-view-site {
+  margin-top: auto;
+  padding: 12px 13px;
+  color: #9db6ad;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.admin-main {
+  min-width: 0;
+}
+
+.admin-content {
+  width: min(1180px, calc(100% - 64px));
+  margin: 0 auto;
+  padding: 58px 0 90px;
+}
+
+.admin-page-header {
+  margin-bottom: 35px;
+}
+
+.admin-eyebrow {
+  margin: 0 0 8px;
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0.16em;
+}
+
+.admin-page-header h1 {
+  margin: 0;
+  color: var(--ink-deep);
+  font-size: 42px;
+  letter-spacing: -0.05em;
+}
+
+.admin-page-header > div > p:last-child {
+  margin: 10px 0 0;
+  color: var(--muted);
+}
+
+.admin-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.admin-stat-card {
+  display: flex;
+  min-height: 165px;
+  flex-direction: column;
+  padding: 23px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: white;
+}
+
+.admin-stat-card > span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.admin-stat-card strong {
+  margin-top: 12px;
+  color: var(--ink-deep);
+  font-size: 42px;
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.admin-stat-card small {
+  margin-top: auto;
+  color: var(--green);
+  font-size: 11px;
+  font-weight: 750;
+}
+
+.admin-panel {
+  margin-top: 22px;
+  padding: 30px;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  background: white;
+}
+
+.admin-panel-heading {
+  margin-bottom: 22px;
+}
+
+.admin-panel-heading h2 {
+  margin: 0;
+  font-size: 25px;
+  letter-spacing: -0.035em;
+}
+
+.admin-action-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.admin-action-grid a {
+  display: flex;
+  min-height: 125px;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 12px;
+  background: var(--water-light);
+  transition:
+    transform 160ms ease,
+    background 160ms ease;
+}
+
+.admin-action-grid a:hover {
+  transform: translateY(-2px);
+  background: var(--water);
+}
+
+.admin-action-grid strong {
+  font-size: 16px;
+}
+
+.admin-action-grid span {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+@media (max-width: 950px) {
+  .admin-stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .admin-action-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-shell {
+    display: block;
+  }
+
+  .admin-sidebar {
+    position: static;
+    height: auto;
+  }
+
+  .admin-nav {
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  .admin-view-site {
+    margin-top: 20px;
+  }
+
+  .admin-content {
+    width: min(100% - 28px, 1180px);
+    padding-top: 35px;
+  }
+
+  .admin-stat-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
