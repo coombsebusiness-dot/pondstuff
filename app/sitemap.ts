@@ -81,6 +81,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${siteUrl}/tools/pond-filter-calculator`,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
   ];
 
   const articlePages: MetadataRoute.Sitemap =

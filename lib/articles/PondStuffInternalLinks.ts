@@ -38,6 +38,11 @@ const PERMANENT_TOOLS: PondStuffInternalLink[] = [
     url: "/tools/pond-liner-calculator",
     type: "tool",
   },
+  {
+    title: "Pond Filter Calculator",
+    url: "/tools/pond-filter-calculator",
+    type: "tool",
+  },
 ];
 
 export async function getPondStuffInternalLinks():
