@@ -3,6 +3,22 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import {
+  writePondStuffArticle,
+  type PondStuffContentType,
+} from "@/lib/articles/PondStuffArticleWriter";
+import {
+  researchPondStuffTopic,
+} from "@/lib/articles/PondStuffResearcher";
+import {
+  reviewPondStuffArticle,
+} from "@/lib/articles/PondStuffArticleReviewer";
+import {
+  getPondStuffInternalLinks,
+} from "@/lib/articles/PondStuffInternalLinks";
+import {
+  sanitizePondStuffArticleHtml,
+} from "@/lib/articles/PondStuffHtmlSanitizer";
 
 type ArticleSection = {
   eyebrow: string;
@@ -42,7 +58,11 @@ function parseSections(value: string): ArticleSection[] {
       .map((section) => ({
         eyebrow: String(section?.eyebrow ?? "").trim(),
         headline: String(section?.headline ?? "").trim(),
-        body: String(section?.body ?? "").trim(),
+        body: sanitizePondStuffArticleHtml(
+          String(
+            section?.body ?? "",
+          ).trim(),
+        ),
       }))
       .filter(
         (section) =>
@@ -83,6 +103,86 @@ async function getUniqueSlug(
     candidate = `${baseSlug}-${suffix}`;
     suffix += 1;
   }
+}
+
+export async function generateArticleDraft(
+  topic: string,
+  contentType: PondStuffContentType,
+) {
+  const cleanTopic = topic.trim();
+
+  if (!cleanTopic) {
+    throw new Error(
+      "Enter an article topic first.",
+    );
+  }
+
+  const allowedTypes: PondStuffContentType[] = [
+    "guide",
+    "problem",
+    "equipment",
+    "feature",
+  ];
+
+  if (!allowedTypes.includes(contentType)) {
+    throw new Error(
+      "Choose a valid content type.",
+    );
+  }
+
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error(
+      "You must be signed in to generate an article.",
+    );
+  }
+
+  const { data: adminUser } =
+    await supabase
+      .from("admin_users")
+      .select("role")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+  if (!adminUser) {
+    throw new Error(
+      "You do not have admin access.",
+    );
+  }
+
+  const research =
+    await researchPondStuffTopic(
+      cleanTopic,
+    );
+
+  const internalLinks =
+    await getPondStuffInternalLinks();
+
+  const article =
+    await writePondStuffArticle({
+      topic: cleanTopic,
+      contentType,
+      researchNotes: research.notes,
+      internalLinks,
+    });
+
+  const reviewedArticle =
+    await reviewPondStuffArticle({
+      article,
+      researchNotes: research.notes,
+      internalLinks,
+    });
+
+  return {
+    ...reviewedArticle,
+    researchSources:
+      research.sources,
+  };
 }
 
 export async function createArticle(

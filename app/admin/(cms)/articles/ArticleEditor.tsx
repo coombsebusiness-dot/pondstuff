@@ -6,7 +6,11 @@ import {
 } from "react";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import { createClient } from "@/lib/supabase/client";
-import { createArticle, updateArticle } from "./actions";
+import {
+  createArticle,
+  generateArticleDraft,
+  updateArticle,
+} from "./actions";
 
 type Category = {
   id: string;
@@ -109,6 +113,39 @@ export default function ArticleEditor({
         : [makeSection()],
     );
 
+  const [excerpt, setExcerpt] =
+    useState(initialArticle?.excerpt ?? "");
+
+  const [intro, setIntro] =
+    useState(initialArticle?.intro ?? "");
+
+  const [contentType, setContentType] =
+    useState(
+      initialArticle?.content_type ?? "guide",
+    );
+
+  const [aiTopic, setAiTopic] =
+    useState("");
+
+  const [aiGenerating, setAiGenerating] =
+    useState(false);
+
+  const [aiMessage, setAiMessage] =
+    useState("");
+
+  const [heroImageBrief, setHeroImageBrief] =
+    useState("");
+
+  const [
+    researchSources,
+    setResearchSources,
+  ] = useState<
+    Array<{
+      title: string;
+      url: string;
+    }>
+  >([]);
+
   const [heroImageUrl, setHeroImageUrl] =
     useState(initialArticle?.hero_image_url ?? "");
 
@@ -207,6 +244,75 @@ export default function ArticleEditor({
 
       return next;
     });
+  }
+
+  async function generateWithAI() {
+    const topic =
+      aiTopic.trim() || title.trim();
+
+    if (!topic) {
+      setAiMessage(
+        "Enter an article topic first.",
+      );
+      return;
+    }
+
+    setAiGenerating(true);
+    setAiMessage("");
+
+    try {
+      const article =
+        await generateArticleDraft(
+          topic,
+          contentType as
+            | "guide"
+            | "problem"
+            | "equipment"
+            | "feature",
+        );
+
+      setTitle(article.title);
+      setSlug(article.slug);
+      setSlugEdited(true);
+      setExcerpt(article.excerpt);
+      setIntro(article.intro);
+
+      setSections(
+        article.sections.map(
+          (section) => ({
+            id: crypto.randomUUID(),
+            eyebrow: section.eyebrow,
+            headline: section.headline,
+            body: section.body,
+          }),
+        ),
+      );
+
+      setSeoTitle(article.seoTitle);
+      setMetaDescription(
+        article.metaDescription,
+      );
+
+      setHeroImageBrief(
+        article.heroImageBrief,
+      );
+
+      setResearchSources(
+        article.researchSources ?? [],
+      );
+
+      setAiMessage(
+        "Draft generated. Review everything before saving or publishing.",
+      );
+    } catch (error) {
+      setAiMessage(
+        error instanceof Error
+          ? error.message
+          : "Article generation failed.",
+      );
+    } finally {
+      setAiGenerating(false);
+    }
   }
 
   async function uploadHero(
@@ -317,6 +423,106 @@ export default function ArticleEditor({
             <div className="admin-editor-card-heading">
               <div>
                 <p className="admin-eyebrow">
+                  AI ARTICLE BUILDER
+                </p>
+                <h2>
+                  Generate a PondStuff draft
+                </h2>
+                <p>
+                  Enter a topic and generate a
+                  draft directly into the editor.
+                </p>
+              </div>
+            </div>
+
+            <div className="admin-form-grid">
+              <label className="admin-field admin-field-full">
+                <span>Article topic</span>
+                <input
+                  type="text"
+                  value={aiTopic}
+                  onChange={(event) =>
+                    setAiTopic(
+                      event.target.value,
+                    )
+                  }
+                  placeholder="How to clear green pond water"
+                  disabled={aiGenerating}
+                />
+              </label>
+
+              <div className="admin-field admin-field-full">
+                <button
+                  type="button"
+                  className="admin-primary-button"
+                  disabled={aiGenerating}
+                  onClick={() => {
+                    void generateWithAI();
+                  }}
+                >
+                  {aiGenerating
+                    ? "Generating article…"
+                    : "Generate with AI"}
+                </button>
+
+                {aiMessage && (
+                  <p
+                    style={{
+                      marginTop: "0.75rem",
+                    }}
+                  >
+                    {aiMessage}
+                  </p>
+                )}
+              </div>
+
+              {heroImageBrief && (
+                <div className="admin-field admin-field-full">
+                  <span>
+                    Suggested hero image
+                  </span>
+                  <p>{heroImageBrief}</p>
+                </div>
+              )}
+
+              {researchSources.length > 0 && (
+                <div className="admin-field admin-field-full">
+                  <span>
+                    Research sources used
+                  </span>
+
+                  <div
+                    style={{
+                      display: "grid",
+                      gap: "0.5rem",
+                      marginTop: "0.5rem",
+                    }}
+                  >
+                    {researchSources.map(
+                      (source) => (
+                        <a
+                          key={source.url}
+                          href={source.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          style={{
+                            overflowWrap:
+                              "anywhere",
+                          }}
+                        >
+                          {source.title}
+                        </a>
+                      ),
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+          <section className="admin-editor-card">
+            <div className="admin-editor-card-heading">
+              <div>
+                <p className="admin-eyebrow">
                   ARTICLE
                 </p>
                 <h2>
@@ -377,8 +583,11 @@ export default function ArticleEditor({
 
                 <select
                   name="content_type"
-                  defaultValue={
-                    initialArticle?.content_type ?? "guide"
+                  value={contentType}
+                  onChange={(event) =>
+                    setContentType(
+                      event.target.value,
+                    )
                   }
                 >
                   <option value="guide">
@@ -436,7 +645,12 @@ export default function ArticleEditor({
                 <textarea
                   name="excerpt"
                   rows={3}
-                  defaultValue={initialArticle?.excerpt ?? ""}
+                  value={excerpt}
+                  onChange={(event) =>
+                    setExcerpt(
+                      event.target.value,
+                    )
+                  }
                   placeholder="A short summary used on cards, category pages and search previews."
                 />
               </label>
@@ -449,7 +663,12 @@ export default function ArticleEditor({
                 <textarea
                   name="intro"
                   rows={6}
-                  defaultValue={initialArticle?.intro ?? ""}
+                  value={intro}
+                  onChange={(event) =>
+                    setIntro(
+                      event.target.value,
+                    )
+                  }
                   placeholder="Opening paragraphs for the article..."
                 />
               </label>
