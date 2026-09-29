@@ -25,9 +25,9 @@ const tools = [
   {
     title: "Pond Filter Calculator",
     description:
-      "Estimate an appropriate filtration capacity for your pond.",
-    href: "#",
-    status: "Coming soon",
+      "Find the filter capacity rating to look for based on pond volume and fish stocking.",
+    href: "/tools/pond-filter-calculator",
+    status: "Available now",
   },
   {
     title: "Pond Liner Calculator",
