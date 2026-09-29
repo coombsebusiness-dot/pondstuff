@@ -18,9 +18,9 @@ const tools = [
   {
     title: "Pond Pump Calculator",
     description:
-      "Estimate the pump flow rate your pond needs based on its water volume.",
-    href: "#",
-    status: "Coming soon",
+      "Estimate baseline pond circulation and understand how head height affects pump selection.",
+    href: "/tools/pond-pump-calculator",
+    status: "Available now",
   },
   {
     title: "Pond Filter Calculator",
