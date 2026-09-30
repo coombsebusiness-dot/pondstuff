@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "plants:worker": "tsx scripts/plant-queue-worker.ts",
+    "plants:images": "tsx scripts/plant-image-worker.ts",
+    "equipment:worker": "tsx scripts/equipment-queue-worker.ts",
+    "equipment:images": "tsx scripts/equipment-image-worker.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
@@ -32,6 +36,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.6",
     "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3"
   }
 }
