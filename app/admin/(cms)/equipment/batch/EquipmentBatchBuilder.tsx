@@ -72,6 +72,18 @@ export default function EquipmentBatchBuilder({
     );
   }
 
+  function selectAll() {
+    setSelected(
+      equipmentCatalogue.map(
+        (item) => item.name,
+      ),
+    );
+  }
+
+  function clearSelection() {
+    setSelected([]);
+  }
+
   function queueSelected() {
     setMessage("");
 
@@ -183,6 +195,21 @@ export default function EquipmentBatchBuilder({
         </div>
 
         <div className="mt-6 flex flex-wrap items-center gap-4">
+          <button
+            type="button"
+            onClick={selectAll}
+            className="rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700"
+          >
+            Select all
+          </button>
+
+          <button
+            type="button"
+            onClick={clearSelection}
+            className="rounded-xl border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-700"
+          >
+            Clear selection
+          </button>
           <button
             type="button"
             disabled={

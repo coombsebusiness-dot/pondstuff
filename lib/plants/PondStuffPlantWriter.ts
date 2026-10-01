@@ -143,8 +143,12 @@ function cleanJson(value: string) {
 
 export async function generatePondStuffPlant(
   plantName: string,
+  scientificNameHint?: string | null,
 ): Promise<PondStuffPlantDraft> {
   const cleanName = plantName.trim();
+
+  const cleanScientificNameHint =
+    scientificNameHint?.trim() || null;
 
   if (!cleanName) {
     throw new Error("Enter a plant name first.");
@@ -172,7 +176,17 @@ PondStuff, an independent UK garden-pond resource.
 
 Research this pond or aquatic plant:
 
+Requested common name:
 "${cleanName}"
+
+${
+  cleanScientificNameHint
+    ? `Catalogue scientific identity:
+"${cleanScientificNameHint}"
+
+Research this exact taxon/cultivar. The scientific identity is a research hint supplied by the curated PondStuff catalogue, not evidence by itself. Verify it against the approved sources. Do not silently substitute a different species merely because the common name is ambiguous. If authoritative evidence conflicts with the supplied identity, explain the conflict rather than inventing certainty.`
+    : `No scientific identity was supplied by the catalogue. Resolve the identity conservatively from the approved sources. If the common name is genuinely ambiguous, say so rather than guessing.`
+}
 
 Use ONLY the approved domains supplied to the
 web-search tool.

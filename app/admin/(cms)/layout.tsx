@@ -7,6 +7,7 @@ const adminNav = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/articles", label: "Articles" },
   { href: "/admin/plants", label: "Plants" },
+  { href: "/admin/equipment", label: "Equipment" },
   { href: "/admin/fish", label: "Fish" },
 ];
 

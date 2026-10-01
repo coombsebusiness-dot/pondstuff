@@ -14,24 +14,72 @@ const articlePaths: Record<string, string> = {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = await createClient();
+  const now = new Date().toISOString();
 
-  const { data: articles, error } = await supabase
-    .from("articles")
-    .select(`
-      slug,
-      content_type,
-      updated_at
-    `)
-    .eq("status", "published")
-    .lte("published_at", new Date().toISOString())
-    .order("published_at", {
-      ascending: false,
-    });
+  const { data: articles, error: articlesError } =
+    await supabase
+      .from("articles")
+      .select("slug, content_type, updated_at")
+      .eq("status", "published")
+      .lte("published_at", now)
+      .order("published_at", {
+        ascending: false,
+      });
 
-  if (error) {
+  if (articlesError) {
     console.error(
       "Could not load articles for sitemap:",
-      error.message,
+      articlesError.message,
+    );
+  }
+
+  const { data: plants, error: plantsError } =
+    await supabase
+      .from("plants")
+      .select("slug, updated_at")
+      .eq("status", "published")
+      .lte("published_at", now)
+      .order("published_at", {
+        ascending: false,
+      });
+
+  if (plantsError) {
+    console.error(
+      "Could not load plants for sitemap:",
+      plantsError.message,
+    );
+  }
+
+  const { data: fish, error: fishError } =
+    await supabase
+      .from("fish")
+      .select("slug, updated_at")
+      .eq("status", "published")
+      .lte("published_at", now)
+      .order("published_at", {
+        ascending: false,
+      });
+
+  if (fishError) {
+    console.error(
+      "Could not load fish for sitemap:",
+      fishError.message,
+    );
+  }
+
+  const { data: equipment, error: equipmentError } =
+    await supabase
+      .from("equipment")
+      .select("slug, updated_at")
+      .eq("status", "published")
+      .order("name", {
+        ascending: true,
+      });
+
+  if (equipmentError) {
+    console.error(
+      "Could not load equipment for sitemap:",
+      equipmentError.message,
     );
   }
 
@@ -86,10 +134,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.9,
     },
-
     {
       url: `${siteUrl}/tools/pond-pump-calculator`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
     },
@@ -116,8 +162,41 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ];
     });
 
+  const plantPages: MetadataRoute.Sitemap =
+    (plants ?? []).map((plant) => ({
+      url: `${siteUrl}/plants/${plant.slug}`,
+      lastModified: plant.updated_at
+        ? new Date(plant.updated_at)
+        : undefined,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    }));
+
+  const fishPages: MetadataRoute.Sitemap =
+    (fish ?? []).map((item) => ({
+      url: `${siteUrl}/fish/${item.slug}`,
+      lastModified: item.updated_at
+        ? new Date(item.updated_at)
+        : undefined,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    }));
+
+  const equipmentPages: MetadataRoute.Sitemap =
+    (equipment ?? []).map((item) => ({
+      url: `${siteUrl}/equipment/${item.slug}`,
+      lastModified: item.updated_at
+        ? new Date(item.updated_at)
+        : undefined,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    }));
+
   return [
     ...staticPages,
     ...articlePages,
+    ...plantPages,
+    ...fishPages,
+    ...equipmentPages,
   ];
 }

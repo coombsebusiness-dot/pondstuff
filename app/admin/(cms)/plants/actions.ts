@@ -74,6 +74,96 @@ async function requireAdmin() {
   return supabase;
 }
 
+type PlantResearchSource = {
+  title: string;
+  url: string;
+};
+
+function researchSourcesValue(
+  formData: FormData,
+): PlantResearchSource[] {
+  const raw = formData.get(
+    "research_sources",
+  );
+
+  if (
+    typeof raw !== "string" ||
+    !raw.trim()
+  ) {
+    return [];
+  }
+
+  try {
+    const parsed: unknown =
+      JSON.parse(raw);
+
+    if (!Array.isArray(parsed)) {
+      return [];
+    }
+
+    return parsed.flatMap(
+      (item): PlantResearchSource[] => {
+        if (
+          typeof item !== "object" ||
+          item === null
+        ) {
+          return [];
+        }
+
+        const record =
+          item as Record<
+            string,
+            unknown
+          >;
+
+        if (
+          typeof record.title !==
+            "string" ||
+          typeof record.url !==
+            "string"
+        ) {
+          return [];
+        }
+
+        const title =
+          record.title.trim();
+
+        const url =
+          record.url.trim();
+
+        if (!title || !url) {
+          return [];
+        }
+
+        try {
+          const parsedUrl =
+            new URL(url);
+
+          if (
+            parsedUrl.protocol !==
+              "http:" &&
+            parsedUrl.protocol !==
+              "https:"
+          ) {
+            return [];
+          }
+        } catch {
+          return [];
+        }
+
+        return [
+          {
+            title,
+            url,
+          },
+        ];
+      },
+    );
+  } catch {
+    return [];
+  }
+}
+
 export async function createPlant(formData: FormData) {
   const supabase = await requireAdmin();
 
@@ -250,6 +340,9 @@ export async function createPlant(formData: FormData) {
       meta_description: textValue(
         formData,
         "meta_description",
+      ),
+      research_sources: researchSourcesValue(
+        formData,
       ),
       status,
       is_featured: checked(

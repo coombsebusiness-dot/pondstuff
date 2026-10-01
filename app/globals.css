@@ -2315,3 +2315,817 @@ a.tool-card:hover {
     font-size: 18px;
   }
 }
+
+/* =========================================================
+   PondStuff Plant Finder
+   ========================================================= */
+
+.plant-finder {
+  display: grid;
+  gap: 2rem;
+}
+
+.plant-finder-panel {
+  padding: 1.5rem;
+  border: 1px solid rgba(13, 41, 34, 0.12);
+  border-radius: 20px;
+  background: #f7faf7;
+}
+
+.plant-finder-search label,
+.plant-filter-selects label {
+  display: grid;
+  gap: 0.45rem;
+  font-weight: 700;
+  color: var(--ink-deep);
+}
+
+.plant-finder-search input,
+.plant-filter-selects select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgba(13, 41, 34, 0.18);
+  border-radius: 10px;
+  background: white;
+  color: var(--ink-deep);
+  font: inherit;
+}
+
+.plant-finder-search input:focus,
+.plant-filter-selects select:focus {
+  outline: 2px solid rgba(40, 108, 82, 0.18);
+  border-color: var(--green);
+}
+
+.plant-filter-selects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.plant-filter-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.plant-filter-checks label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid rgba(13, 41, 34, 0.13);
+  border-radius: 999px;
+  background: white;
+  color: var(--ink-deep);
+  cursor: pointer;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.plant-filter-checks input {
+  accent-color: var(--green);
+}
+
+.plant-filter-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(13, 41, 34, 0.1);
+}
+
+.plant-filter-footer strong {
+  color: var(--ink-deep);
+}
+
+.plant-filter-footer button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--green);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.plant-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem;
+}
+
+.plant-card {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border: 1px solid rgba(13, 41, 34, 0.11);
+  border-radius: 18px;
+  background: white;
+  color: inherit;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(13, 41, 34, 0.05);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    border-color 160ms ease;
+}
+
+.plant-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(40, 108, 82, 0.28);
+  box-shadow: 0 16px 36px rgba(13, 41, 34, 0.1);
+}
+
+.plant-card-image {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #e8f1e9;
+}
+
+.plant-card-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 250ms ease;
+}
+
+.plant-card:hover .plant-card-image img {
+  transform: scale(1.025);
+}
+
+.plant-card-placeholder {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: var(--green);
+  font-size: 2rem;
+}
+
+.plant-card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1.25rem;
+}
+
+.plant-card-topline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  min-height: 27px;
+}
+
+.plant-type-badge,
+.plant-native-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.plant-type-badge {
+  background: #e7f2ea;
+  color: var(--green);
+}
+
+.plant-native-badge {
+  background: var(--ink-deep);
+  color: white;
+}
+
+.plant-card h2 {
+  margin: 0.9rem 0 0;
+  color: var(--ink-deep);
+  font-size: 1.45rem;
+  line-height: 1.1;
+}
+
+.plant-scientific {
+  margin: 0.25rem 0 0;
+  color: rgba(13, 41, 34, 0.65);
+  font-size: 0.92rem;
+}
+
+.plant-card-summary {
+  margin: 0.9rem 0 0;
+  color: rgba(13, 41, 34, 0.76);
+  line-height: 1.6;
+}
+
+.plant-card-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.plant-card-facts span {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.65rem;
+  border-radius: 10px;
+  background: #f5f8f5;
+  color: rgba(13, 41, 34, 0.75);
+  font-size: 0.82rem;
+}
+
+.plant-card-facts strong {
+  color: var(--ink-deep);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.plant-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+}
+
+.plant-card-tags span {
+  padding: 0.28rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(124, 174, 113, 0.15);
+  color: var(--green);
+  font-size: 0.75rem;
+  font-weight: 750;
+}
+
+.plant-card-link {
+  display: block;
+  margin-top: auto;
+  padding-top: 1.15rem;
+  color: var(--green);
+}
+
+.plant-empty {
+  padding: 3rem 1.5rem;
+  border: 1px solid rgba(13, 41, 34, 0.1);
+  border-radius: 18px;
+  background: #f7faf7;
+  text-align: center;
+}
+
+.plant-empty h2 {
+  margin: 0.4rem 0;
+  color: var(--ink-deep);
+}
+
+.plant-empty .button {
+  margin-top: 1rem;
+}
+
+@media (max-width: 950px) {
+  .plant-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .plant-filter-selects,
+  .plant-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plant-filter-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .plant-finder-panel {
+    padding: 1.1rem;
+  }
+}
+
+/* =========================================================
+   PondStuff Plant Profiles
+   ========================================================= */
+
+.plant-profile-hero {
+  padding: 2rem 0 4rem;
+  background: #edf7f3;
+}
+
+.plant-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  color: rgba(13, 41, 34, 0.65);
+  font-size: 0.86rem;
+}
+
+.plant-breadcrumbs a {
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.plant-profile-hero-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(320px, 0.75fr);
+  align-items: center;
+  gap: 4rem;
+}
+
+.plant-profile-copy h1 {
+  margin: 0.5rem 0 0;
+  color: var(--ink-deep);
+  font-size: clamp(3rem, 6vw, 5.8rem);
+  line-height: 0.96;
+  letter-spacing: -0.055em;
+}
+
+.plant-profile-scientific {
+  margin: 0.8rem 0 0;
+  color: rgba(13, 41, 34, 0.65);
+  font-size: 1.2rem;
+}
+
+.plant-profile-intro {
+  max-width: 720px;
+  margin: 1.5rem 0 0;
+  color: rgba(13, 41, 34, 0.76);
+  font-size: 1.15rem;
+  line-height: 1.75;
+}
+
+.plant-profile-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.5rem;
+}
+
+.plant-profile-badges span {
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  background: var(--ink-deep);
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.plant-profile-image {
+  overflow: hidden;
+  margin: 0;
+  border-radius: 22px;
+  background: #dfece5;
+  box-shadow: 0 20px 50px rgba(13, 41, 34, 0.12);
+}
+
+.plant-profile-image img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.plant-profile-image figcaption {
+  padding: 0.7rem 1rem;
+  background: white;
+  color: rgba(13, 41, 34, 0.6);
+  font-size: 0.75rem;
+}
+
+.plant-profile-section {
+  padding: 4rem 0 5rem;
+}
+
+.plant-profile-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(280px, 350px);
+  align-items: start;
+  gap: 4rem;
+}
+
+.plant-profile-main {
+  display: grid;
+  gap: 3rem;
+}
+
+.plant-profile-content {
+  max-width: 780px;
+}
+
+.plant-profile-content h2,
+.plant-facts-card h2 {
+  margin: 0.45rem 0 1rem;
+  color: var(--ink-deep);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  line-height: 1.1;
+}
+
+.plant-profile-content > p:not(.eyebrow) {
+  color: rgba(13, 41, 34, 0.78);
+  font-size: 1.04rem;
+  line-height: 1.8;
+}
+
+.plant-suitability-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.plant-suitability-grid > div {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: #f4f8f5;
+}
+
+.plant-suitability-grid strong {
+  color: var(--ink-deep);
+}
+
+.plant-suitability-grid span {
+  color: rgba(13, 41, 34, 0.68);
+}
+
+.plant-facts-card {
+  position: sticky;
+  top: 2rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(13, 41, 34, 0.11);
+  border-radius: 18px;
+  background: #f7faf7;
+}
+
+.plant-facts-card h2 {
+  font-size: 1.7rem;
+}
+
+.plant-facts-card dl {
+  margin: 0;
+}
+
+.plant-facts-card dl > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  padding: 0.8rem 0;
+  border-top: 1px solid rgba(13, 41, 34, 0.09);
+}
+
+.plant-facts-card dt {
+  color: rgba(13, 41, 34, 0.62);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.plant-facts-card dd {
+  margin: 0;
+  color: var(--ink-deep);
+  font-size: 0.86rem;
+  font-weight: 800;
+  text-align: right;
+}
+
+.plant-facts-back {
+  display: block;
+  margin-top: 1.2rem;
+  color: var(--green);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  .plant-profile-hero-grid,
+  .plant-profile-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .plant-profile-image {
+    max-width: 650px;
+  }
+
+  .plant-facts-card {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .plant-profile-hero {
+    padding-bottom: 2.5rem;
+  }
+
+  .plant-profile-copy h1 {
+    font-size: clamp(2.8rem, 15vw, 4.2rem);
+  }
+
+  .plant-suitability-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plant-profile-section {
+    padding: 2.8rem 0 4rem;
+  }
+}
+
+/* PondStuff legal / information pages */
+
+.legal-page {
+  padding: 72px 0 90px;
+  background: var(--white);
+}
+
+.legal-inner {
+  max-width: 850px;
+}
+
+.legal-page h1 {
+  margin: 0;
+  color: var(--ink-deep);
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.legal-page .lead {
+  margin: 22px 0 42px;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.legal-page h2 {
+  margin: 42px 0 14px;
+  color: var(--ink-deep);
+  font-size: 25px;
+  letter-spacing: -0.025em;
+}
+
+.legal-page h3 {
+  margin: 24px 0 8px;
+  color: var(--ink-deep);
+  font-size: 18px;
+}
+
+.legal-page p,
+.legal-page li {
+  color: #49675d;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.legal-page ul {
+  padding-left: 24px;
+}
+
+.legal-page a {
+  color: var(--green);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.info-card {
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--water-light);
+}
+
+.info-card h3 {
+  margin-top: 0;
+}
+
+.info-card p {
+  margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+  .legal-page {
+    padding: 48px 0 64px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* Equipment directory */
+
+.equipment-hero {
+  padding: 72px 0 64px;
+  background: var(--water-light);
+}
+
+.equipment-hero h1 {
+  margin: 10px 0 22px;
+  color: var(--ink-deep);
+  font-size: clamp(44px, 7vw, 78px);
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.equipment-intro {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.75;
+}
+
+.equipment-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 42px;
+  margin-top: 38px;
+}
+
+.equipment-stats div {
+  display: flex;
+  flex-direction: column;
+}
+
+.equipment-stats strong {
+  color: var(--green);
+  font-size: 32px;
+  line-height: 1;
+}
+
+.equipment-stats span {
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.equipment-content {
+  padding: 68px 0 100px;
+}
+
+.equipment-category {
+  margin-bottom: 72px;
+}
+
+.equipment-category-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.equipment-category-heading h2 {
+  margin: 6px 0 0;
+  color: var(--ink-deep);
+  font-size: clamp(28px, 4vw, 40px);
+  letter-spacing: -0.04em;
+}
+
+.equipment-category-heading > span {
+  color: var(--muted);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.equipment-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--white);
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.equipment-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 35px rgba(30, 73, 58, 0.1);
+}
+
+.equipment-card-image {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--water-light);
+}
+
+.equipment-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.equipment-placeholder {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.equipment-card-body {
+  padding: 20px;
+}
+
+.equipment-brand {
+  margin: 0 0 6px;
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.equipment-card h3 {
+  margin: 0;
+  color: var(--ink-deep);
+  font-size: 21px;
+  line-height: 1.2;
+}
+
+.equipment-card-body > p:not(.equipment-brand) {
+  margin: 12px 0 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.equipment-card-link {
+  color: var(--green);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.equipment-empty {
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.equipment-empty h2 {
+  color: var(--ink-deep);
+}
+
+.equipment-empty p {
+  color: var(--muted);
+}
+
+@media (max-width: 1000px) {
+  .equipment-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .equipment-hero {
+    padding: 50px 0 48px;
+  }
+
+  .equipment-content {
+    padding: 48px 0 70px;
+  }
+
+  .equipment-category-heading {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .equipment-grid {
+    grid-template-columns: 1fr;
+  }
+}

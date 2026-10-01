@@ -1,0 +1,184 @@
+
+> pondstuff@0.1.0 equipment:worker
+> tsx scripts/equipment-queue-worker.ts --limit=1000
+
+PondStuff equipment queue worker
+Batch limit: 1000
+
+Researching: OASE AquaMax Eco Premium 6000 / 12 V
+Created draft: AquaMax Eco Premium 6000 / 12 V
+Equipment ID: 2fa4de10-b0da-46d4-ab8e-9439af942e02
+
+Researching: OASE AquaMax Eco Expert 20000 / 12 V
+Created draft: AquaMax Eco Expert 20000 / 12 V
+Equipment ID: 77265232-45cc-46dc-833e-8bf9acad9f6c
+
+Researching: OASE AquaMax Eco Expert 27000 / 12 V
+Created draft: AquaMax Eco Expert 27000 / 12 V
+Equipment ID: 964dcdc6-51d9-4f7e-8788-f26a242df82e
+
+Researching: OASE BioPress 4000
+Created draft: BioPress 4000
+Equipment ID: 114e997c-8ce7-4920-b772-19ef6432deee
+
+Researching: OASE BioPress 6000
+Created draft: BioPress 6000
+Equipment ID: b199a508-c9c8-47fa-92fc-5083c482adf8
+
+Researching: OASE BioPress 10000
+Created draft: BioPress 10000
+Equipment ID: 42c0c6f8-3614-4a72-9330-17ce0408bfa3
+
+Researching: OASE BioSmart 5000
+Created draft: BioSmart Set 5000 INT
+Equipment ID: cb182a6d-c1fd-4314-8272-051c6639ebbe
+
+Researching: OASE BioSmart 10000
+Created draft: BioSmart 10000
+Equipment ID: 97548896-8a4c-4e2b-bd0c-95beef5675a8
+
+Researching: OASE BioSmart 16000
+Skipped: researched identity already exists.
+
+Researching: OASE BioTec ScreenMatic² 40000
+Created draft: BioTec ScreenMatic² 40000
+Equipment ID: c052a29a-5de6-4d81-8dc8-2200637323d9
+
+Researching: OASE Bitron C 36 W
+Created draft: Bitron C 36 W
+Equipment ID: 52f0bd91-8742-45f9-9f3a-8a636d2b1fd1
+
+Researching: Evolution Aqua EazyPod
+Created draft: EazyPod
+Equipment ID: fba10828-8baa-488b-98af-ec458ef66d75
+
+Researching: Evolution Aqua EazyPod Air
+Created draft: EazyPod Air
+Equipment ID: 0a806e40-bf76-40b2-bfff-1895c9ba8345
+
+Researching: Evolution Aqua Nexus 220+
+Created draft: Nexus 220+
+Equipment ID: 7033c44a-2851-4976-a603-096b6fa1c5d0
+
+Researching: Evolution Aqua Nexus 320+
+Created draft: Nexus 320+
+Equipment ID: fa2d60fd-ff04-4a7e-a97e-dc122c052cbc
+
+Researching: Evolution Aqua Nexus Auto 220+
+Skipped: researched identity already exists.
+
+Researching: Evolution Aqua Nexus Auto 320+
+Skipped: researched identity already exists.
+
+Researching: Blagdon Green Machine 10000
+Created draft: Clean Pond Machine 10,000
+Equipment ID: aede7250-40d9-434e-ad43-a9169d17cd5d
+
+Researching: Blagdon Green Machine 15000
+Created draft: Blagdon Green Machine 15000
+Equipment ID: 54f1a57a-fb4c-46db-882d-b5ac79fc5a02
+
+Researching: Blagdon Green Machine 20000
+Created draft: Green Away – 1000ml
+Equipment ID: a598db7c-7fdf-4371-97e5-ea58799cdf6e
+
+Researching: Blagdon Inpond 5 in 1 6000
+Created draft: Inpond 5 in 1 6000
+Equipment ID: 9e653f82-73e2-404b-b0bd-77bf9c8ac32a
+
+Researching: Hozelock Bioforce Revolution 6000
+Created draft: Hozelock Bioforce Revolution 6000
+Equipment ID: f1b94295-ef5b-48a0-b0ce-047a1d042146
+
+Researching: Hozelock Bioforce Revolution 9000
+Created draft: Bioforce Revolution 9000
+Equipment ID: 862184e7-93ee-4df3-b82a-846536a338f1
+
+Researching: Hozelock Bioforce Revolution 12000
+Created draft: Bioforce Revolution 12000 UVC
+Equipment ID: 5aee6cad-4469-4c5d-b4c3-e44b033b444a
+
+Researching: Hozelock Bioforce Revolution 18000
+Skipped: researched identity already exists.
+
+Researching: Hozelock Aquaforce 4000
+Created draft: Hozelock Aquaforce 4000
+Equipment ID: 1762520b-3054-4933-9405-3e1b94309993
+
+Researching: Hozelock Aquaforce 8000
+Created draft: Hozelock Aquaforce 8000
+Equipment ID: 356c58ac-2929-432a-aacb-ba2d93c578ff
+
+Researching: Hozelock Aquaforce 12000
+Created draft: Aquaforce 12000
+Equipment ID: 7896f18a-de4a-4229-93e8-2be974e63e91
+
+Researching: Hozelock Aquaforce 15000
+Created draft: Aquaforce 15000
+Equipment ID: 2aa34320-9a39-4835-9bc8-707144797d99
+
+Researching: Hozelock Aquaforce 20000
+Created draft: Aquaforce
+Equipment ID: fe8cb372-3dc4-4fd5-9e8b-9360f38e8a59
+
+Researching: Aquaforte DM Vario 10000
+Created draft: DM Vario 10000
+Equipment ID: 9da6f2d3-3fdb-48ff-b565-5e89b53fb8cd
+
+Researching: Aquaforte DM Vario 20000
+Created draft: DM-20000 Vario
+Equipment ID: 5a687814-8084-4933-a5cb-c2072e3ac7de
+
+Researching: Aquaforte DM Vario 30000
+Created draft: Aquaforte DM Vario 30000
+Equipment ID: c6617f8b-dbdc-453c-b258-25162e03b8df
+
+Researching: Aquaforte O-Plus 10000
+Created draft: O Plus 10.000
+Equipment ID: 5dc6db20-4881-4630-835c-d4711139846b
+
+Researching: Aquaforte O-Plus 20000
+Created draft: O Plus 20.000
+Equipment ID: 43b2298e-8f17-49c8-a103-e8630f29d387
+
+Researching: Aquaforte O-Plus 30000
+Created draft: AquaForte O-Plus 30000
+Equipment ID: 66a7917e-330f-451d-9dd8-7aaed4202811
+
+Researching: Aquaforte AP-45
+Created draft: AP 45
+Equipment ID: 78cc1f9a-c01f-4f1f-8b2f-47330871a363
+
+Researching: Aquaforte AP-60
+Created draft: AP 60
+Equipment ID: 79feb24f-c0a0-472a-bf08-5cabb6bc55ad
+
+Researching: Aquaforte AP-80
+Created draft: AP 80
+Equipment ID: b0ecd8dc-9111-49e9-9f51-a39377ab2bfb
+
+Researching: Pontec PondoMax Eco 1500
+Created draft: Pontec PondoMax Eco 1500
+Equipment ID: 12026991-89d3-4402-a3e0-eb06ba6d55a9
+
+Researching: Pontec PondoMax Eco 2500
+Created draft: Pontec PondoMax Eco 2500
+Equipment ID: 87018b48-c6ee-4809-9887-41635de560b2
+
+Researching: Pontec PondoMax Eco 3500
+Created draft: PondoMax Eco 3500
+Equipment ID: 39c3879f-f9b1-4073-9dc5-d2f7df8eae94
+
+Researching: Pontec PondoMax Eco 5000
+Created draft: Pontec PondoMax Eco 5000
+Equipment ID: b3748289-de82-436c-9467-1fa7684a8261
+
+Researching: Pontec PondoMax Eco 8500
+Created draft: Pontec PondoMax Eco 8500 C
+Equipment ID: 130090ac-3bec-433d-aad6-74a17e98b3d3
+
+Researching: Pontec PondoMax Eco 12000
+Created draft: Pontec PondoMax Eco 12000
+Equipment ID: 9ba03f46-1690-424f-ac80-d381eec19b7a
+
+Queue empty. Processed 45 job(s).

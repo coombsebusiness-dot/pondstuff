@@ -20,6 +20,29 @@ const navItems = [
   { href: "/tools", label: "Tools" },
 ];
 
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://pondstuff.co.uk/#organization",
+      "name": "PondStuff",
+      "url": "https://pondstuff.co.uk",
+      "description":
+        "Practical pond advice, pond plants, fish guides, equipment help, troubleshooting and free pond calculators for UK pond owners."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://pondstuff.co.uk/#website",
+      "name": "PondStuff",
+      "url": "https://pondstuff.co.uk",
+      "publisher": {
+        "@id": "https://pondstuff.co.uk/#organization"
+      }
+    }
+  ]
+};
+
 export default function PublicLayout({
   children,
 }: Readonly<{
@@ -27,6 +50,15 @@ export default function PublicLayout({
 }>) {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(siteSchema).replace(
+            /</g,
+            "\\u003c",
+          ),
+        }}
+      />
       <header className="site-header">
         <div className="topbar">
           <div className="shell topbar-inner">
@@ -91,6 +123,16 @@ export default function PublicLayout({
             <Link href="/plants">Pond Plants</Link>
             <Link href="/fish">Pond Fish</Link>
             <Link href="/tools">Pond Tools</Link>
+          </div>
+
+          <div>
+            <h2>PondStuff</h2>
+            <Link href="/about">About</Link>
+            <Link href="/contact">Contact</Link>
+            <Link href="/privacy-policy">Privacy Policy</Link>
+            <Link href="/cookie-policy">Cookie Policy</Link>
+            <Link href="/terms-and-conditions">Terms & Conditions</Link>
+            <Link href="/affiliate-disclosure">Affiliate Disclosure</Link>
           </div>
         </div>
 
