@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import RecommendedAffiliateProducts from "@/components/affiliate/RecommendedAffiliateProducts";
 
 type ContentType =
   | "guide"
@@ -414,6 +415,10 @@ export default async function PublicArticlePage({
               </section>
             ),
           )}
+
+          <RecommendedAffiliateProducts
+            articleId={article.id}
+          />
         </div>
       </article>
 

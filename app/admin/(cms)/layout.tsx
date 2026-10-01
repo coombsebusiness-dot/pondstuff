@@ -8,6 +8,7 @@ const adminNav = [
   { href: "/admin/articles", label: "Articles" },
   { href: "/admin/plants", label: "Plants" },
   { href: "/admin/equipment", label: "Equipment" },
+  { href: "/admin/affiliate-products", label: "Affiliate Products" },
   { href: "/admin/fish", label: "Fish" },
 ];
 
