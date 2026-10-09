@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PondVolumeCalculator from "./PondVolumeCalculator";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/tools/pond-volume-calculator" },
   title: "Pond Volume Calculator – Litres & UK Gallons",
   description:
     "Calculate your pond volume in litres and UK gallons. Works with rectangular, circular and irregular garden ponds.",

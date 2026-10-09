@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import PondLinerCalculator from "./PondLinerCalculator";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/tools/pond-liner-calculator" },
   title: "Pond Liner Calculator – Calculate Liner Size",
   description:
     "Calculate the pond liner size you need from your pond length, width and maximum depth. Includes an adjustable overlap allowance.",
