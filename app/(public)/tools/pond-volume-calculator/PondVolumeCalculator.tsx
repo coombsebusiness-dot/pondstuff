@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 
 type Shape = "rectangle" | "circle" | "irregular";
@@ -212,6 +213,38 @@ export default function PondVolumeCalculator() {
           </>
         )}
       </div>
+
+      {result &&
+        Number.isFinite(result.litres) &&
+        Math.round(result.litres) > 0 &&
+        Math.round(result.litres) <= 100_000_000 && (
+          <div className="calculator-control">
+            <span className="calculator-label">
+              Next steps for your pond
+            </span>
+
+            <p className="calculator-note">
+              Your estimated pond volume will be
+              carried into the next calculator.
+            </p>
+
+            <div className="choice-row">
+              <Link
+                className="choice"
+                href={`/tools/pond-pump-calculator?volume=${Math.round(result.litres)}`}
+              >
+                Find my pond pump
+              </Link>
+
+              <Link
+                className="choice"
+                href={`/tools/pond-filter-calculator?volume=${Math.round(result.litres)}`}
+              >
+                Find my pond filter
+              </Link>
+            </div>
+          </div>
+        )}
     </div>
   );
 }

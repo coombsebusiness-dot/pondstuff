@@ -3648,3 +3648,70 @@ a.tool-card:hover {
     max-width: none;
   }
 }
+
+/* PONDSTUFF CALCULATOR JOURNEY */
+
+/* Separate results from the next section */
+.calculator-card > .calculator-result + .calculator-control {
+  margin-top: 32px;
+}
+
+/* Give the next-step links breathing room */
+.calculator-result + .calculator-control .choice-row {
+  margin-top: 16px;
+  gap: 12px;
+}
+
+/* Prominent calculator journey buttons */
+.calculator-result + .calculator-control .choice-row a.choice {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 12px 22px;
+  border: 1px solid var(--ink-deep);
+  border-radius: 999px;
+  background: var(--ink-deep);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+/* Secondary action */
+.calculator-result + .calculator-control .choice-row a.choice + a.choice {
+  background: #ffffff;
+  color: var(--ink-deep);
+}
+
+/* Hover and keyboard focus */
+.calculator-result + .calculator-control .choice-row a.choice:hover {
+  transform: translateY(-2px);
+  background: #286c52;
+  color: #ffffff;
+}
+
+.calculator-result + .calculator-control .choice-row a.choice:focus-visible {
+  outline: 3px solid #286c52;
+  outline-offset: 3px;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+  .calculator-result + .calculator-control .choice-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .calculator-result + .calculator-control .choice-row a.choice {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calculator-result + .calculator-control .choice-row a.choice {
+    transition: none;
+  }
+}

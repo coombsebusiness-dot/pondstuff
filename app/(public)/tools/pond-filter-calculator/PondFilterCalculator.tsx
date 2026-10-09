@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type PondType =
   | "no-fish"
@@ -17,6 +17,26 @@ function formatNumber(value: number) {
 
 export default function PondFilterCalculator() {
   const [volume, setVolume] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const incoming = params.get("volume");
+
+    if (incoming === null || incoming.trim() === "") {
+      return;
+    }
+
+    const litres = Number(incoming);
+
+    if (
+      Number.isFinite(litres) &&
+      litres > 0 &&
+      litres <= 100_000_000
+    ) {
+      setVolume(String(litres));
+    }
+  }, []);
+
   const [pondType, setPondType] =
     useState<PondType>("normal-fish");
   const [waterfall, setWaterfall] = useState(false);
