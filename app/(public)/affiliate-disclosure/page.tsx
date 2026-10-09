@@ -14,6 +14,8 @@ export default function Page() {
 
 <p className="lead">PondStuff may use affiliate links on some pages.</p>
 
+<p><strong>As an Amazon Associate I earn from qualifying purchases.</strong></p>
+
 <h2>What is an affiliate link?</h2>
 
 <p>An affiliate link is a link containing tracking information supplied by a retailer or affiliate network. If you click such a link and subsequently make a qualifying purchase, PondStuff may receive a commission at no additional cost to you.</p>

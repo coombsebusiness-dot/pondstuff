@@ -11,6 +11,7 @@ type AffiliateProduct = {
   availability: string | null;
   affiliate_url: string | null;
   merchant: string;
+  provider: string;
 };
 
 export default async function RecommendedAffiliateProducts({
@@ -61,7 +62,8 @@ export default async function RecommendedAffiliateProducts({
         reviews,
         availability,
         affiliate_url,
-        merchant
+        merchant,
+        provider
       `,
     )
     .in("id", productIds)
@@ -141,7 +143,7 @@ export default async function RecommendedAffiliateProducts({
 
             <div className="article-affiliate-card-body">
               <span className="article-affiliate-merchant">
-                {product.merchant}
+                {product.merchant} · Paid link
               </span>
 
               <h3>{product.name}</h3>
@@ -185,6 +187,11 @@ export default async function RecommendedAffiliateProducts({
       </div>
 
       <p className="article-affiliate-disclosure">
+        {orderedProducts.some((product) => product.provider === "amazon") ? (
+          <>
+            As an Amazon Associate I earn from qualifying purchases.{" "}
+          </>
+        ) : null}
         PondStuff may earn a commission from
         qualifying purchases at no additional cost
         to you. Prices and availability can change.
