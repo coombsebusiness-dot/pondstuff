@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CookieConsent, { CookieSettingsButton } from "@/components/privacy/CookieConsent";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -50,6 +51,7 @@ export default function PublicLayout({
 }>) {
   return (
     <>
+      <CookieConsent />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -131,6 +133,7 @@ export default function PublicLayout({
             <Link href="/contact">Contact</Link>
             <Link href="/privacy-policy">Privacy Policy</Link>
             <Link href="/cookie-policy">Cookie Policy</Link>
+            <CookieSettingsButton />
             <Link href="/terms-and-conditions">Terms & Conditions</Link>
             <Link href="/affiliate-disclosure">Affiliate Disclosure</Link>
           </div>
